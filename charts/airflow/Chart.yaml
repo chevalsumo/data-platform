@@ -1,0 +1,7 @@
+apiVersion: v2
+name: airflow
+version: 1.0.0
+dependencies:
+  - name: airflow
+    version: 18.1.1
+    repository: https://charts.bitnami.com/bitnami
