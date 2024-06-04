@@ -1129,7 +1129,6 @@ worker:
             secretKeyRef:
               name: aws-bucket-access
               key: AWS_SECRET_ACCESS_KEY
-
   ## @param worker.initContainers Add additional init containers to the Airflow worker pods
   ## Example:
   ## initContainers:
@@ -1143,6 +1142,9 @@ worker:
   initContainers: []
   ## @param worker.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the Airflow worker pods
   ##
+  extraVolumeMounts: []
+  ## @param worker.extraVolumes Optionally specify extra list of additional volumes for the Airflow worker pods
+  ##
   extraVolumeMounts: 
       - name: s3-data
         mountPath: /opt/dags
@@ -1151,9 +1153,6 @@ worker:
   extraVolumes: 
      - name: s3-data
        emptyDir: {}
-  ## @param worker.extraVolumeClaimTemplates Optionally specify extra list of volumesClaimTemplates for the Airflow worker statefulset
-  ##
-  extraVolumeClaimTemplates: []
   ## @param worker.podTemplate Template to replace the default one to be use when `executor=KubernetesExecutor` to create Airflow worker pods
   ##
   podTemplate: {}
