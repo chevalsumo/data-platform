@@ -1145,12 +1145,12 @@ worker:
   ##
   extraVolumeMounts: 
       - name: s3-data
-          mountPath: /opt/dags
+        mountPath: /opt/dags
   ## @param worker.extraVolumes Optionally specify extra list of additional volumes for the Airflow worker pods
   ##
   extraVolumes: 
      - name: s3-data
-      emptyDir: {}
+       emptyDir: {}
   ## @param worker.extraVolumeClaimTemplates Optionally specify extra list of volumesClaimTemplates for the Airflow worker statefulset
   ##
   extraVolumeClaimTemplates: []
