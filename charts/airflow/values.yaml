@@ -1117,7 +1117,7 @@ worker:
   sidecars: 
     - name: s3-sidecar
       image: amazon/aws-cli
-      command: ['sh', '-c', 'while true; do aws s3 sync s3://data-platform-chevalsumo/airflow/dags/ /opt/dagoo; sleep 300; done']
+      command: ['sh', '-c', 'while true; do aws s3 sync s3://data-platform-chevalsumo/airflow/dags/ /opt/cheval; sleep 300; done']
       env:
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
@@ -1144,7 +1144,7 @@ worker:
   ##
   extraVolumeMounts: 
       - name: s3-data
-        mountPath: /opt/dagoo
+        mountPath: /opt/cheval
   ## @param worker.extraVolumes Optionally specify extra list of additional volumes for the Airflow worker pods
   ##
   extraVolumes: 
