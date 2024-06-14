@@ -808,12 +808,12 @@ scheduler:
   ##
   extraVolumeMounts: 
     - name: s3-data
-        mountPath: /opt/bitnami/airflow/dags
+      mountPath: /opt/bitnami/airflow/dags
   ## @param scheduler.extraVolumes Optionally specify extra list of additional volumes for the Airflow scheduler pods
   ##
   extraVolumes: 
     - name: s3-data
-       emptyDir: {}
+      emptyDir: {}
   ## Airflow scheduler Pod Disruption Budget
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
   ## @param scheduler.pdb.create Deploy a pdb object for the Airflow scheduler pods
