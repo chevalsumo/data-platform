@@ -792,7 +792,7 @@ scheduler:
               key: AWS_SECRET_ACCESS_KEY
       volumeMounts: 
       - name: s3-data
-        mountPath: /opt/cheval
+        mountPath: /opt/dags
   ## @param scheduler.initContainers Add additional init containers to the Airflow scheduler pods
   ## Example:
   ## initContainers:
@@ -1152,7 +1152,7 @@ worker:
               key: AWS_SECRET_ACCESS_KEY
       volumeMounts: 
       - name: s3-data
-        mountPath: /opt/cheval
+        mountPath: /opt/dags
   ## @param worker.initContainers Add additional init containers to the Airflow worker pods
   ## Example:
   ## initContainers:
