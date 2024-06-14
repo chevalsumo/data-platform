@@ -1910,7 +1910,7 @@ postgresql:
   auth:
     enablePostgresUser: true
     username: bn_airflow
-    password: ""
+    password: "test123"
     database: bitnami_airflow
     existingSecret: ""
   architecture: standalone
@@ -1947,7 +1947,7 @@ externalDatabase:
   port: 5432
   user: bn_airflow
   database: bitnami_airflow
-  password: ""
+  password: "test123"
   existingSecret: ""
   existingSecretPasswordKey: ""
 ## Redis&reg; chart configuration
