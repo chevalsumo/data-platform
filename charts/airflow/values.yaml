@@ -72,10 +72,10 @@ diagnosticMode:
 auth:
   ## @param auth.username Username to access web UI
   ##
-  username: user
+  username: airflow
   ## @param auth.password Password to access web UI
   ##
-  password: ""
+  password: airflow
   ## @param auth.fernetKey Fernet key to secure connections
   ## ref: https://airflow.readthedocs.io/en/stable/howto/secure-connections.html
   ## ref: https://bcb.github.io/airflow/fernet-key
