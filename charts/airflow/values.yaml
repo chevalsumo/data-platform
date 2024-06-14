@@ -1129,6 +1129,9 @@ worker:
             secretKeyRef:
               name: aws-bucket-access
               key: AWS_SECRET_ACCESS_KEY
+      VolumeMounts: 
+      - name: s3-data
+        mountPath: /opt/cheval
   ## @param worker.initContainers Add additional init containers to the Airflow worker pods
   ## Example:
   ## initContainers:
