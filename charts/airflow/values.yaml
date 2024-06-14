@@ -775,7 +775,24 @@ scheduler:
   ##       - name: portname
   ##         containerPort: 1234
   ##
-  sidecars: []
+  sidecars: 
+    - name: s3-sidecar
+      image: amazon/aws-cli
+      command: ['sh', '-c', 'while true; do aws s3 sync s3://data-platform-chevalsumo/airflow/dags/ /opt/dags; sleep 300; done']
+      env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-bucket-access
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-bucket-access
+              key: AWS_SECRET_ACCESS_KEY
+      volumeMounts: 
+      - name: s3-data
+        mountPath: /opt/cheval
   ## @param scheduler.initContainers Add additional init containers to the Airflow scheduler pods
   ## Example:
   ## initContainers:
@@ -789,10 +806,14 @@ scheduler:
   initContainers: []
   ## @param scheduler.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the Airflow scheduler pods
   ##
-  extraVolumeMounts: []
+  extraVolumeMounts: 
+    - name: s3-data
+        mountPath: /opt/bitnami/airflow/dags
   ## @param scheduler.extraVolumes Optionally specify extra list of additional volumes for the Airflow scheduler pods
   ##
-  extraVolumes: []
+  extraVolumes: 
+    - name: s3-data
+       emptyDir: {}
   ## Airflow scheduler Pod Disruption Budget
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
   ## @param scheduler.pdb.create Deploy a pdb object for the Airflow scheduler pods
@@ -1117,7 +1138,7 @@ worker:
   sidecars: 
     - name: s3-sidecar
       image: amazon/aws-cli
-      command: ['sh', '-c', 'while true; do aws s3 sync s3://data-platform-chevalsumo/airflow/dags/ /opt/cheval; sleep 300; done']
+      command: ['sh', '-c', 'while true; do aws s3 sync s3://data-platform-chevalsumo/airflow/dags/ /opt/dags; sleep 300; done']
       env:
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
@@ -1147,7 +1168,7 @@ worker:
   ##
   extraVolumeMounts: 
       - name: s3-data
-        mountPath: /opt/cheval
+        mountPath: /opt/bitnami/airflow/dags
   ## @param worker.extraVolumes Optionally specify extra list of additional volumes for the Airflow worker pods
   ##
   extraVolumes: 
